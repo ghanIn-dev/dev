@@ -22,12 +22,26 @@
 - 설정파일은 /etc/logstash/conf.d에 생성해서 사용한다.
 - 설정파일은 input, filter, output 구조로 구성되어있다.
 - 설정파일 내용 중 index를 설정할 수 있는데 index는 반드시 소문자만 사용한다. index는 로그분류기준이된다.
+- systemctl start logstash : 상시실행가능
+
+### logstash 문법
+- disect{mapping =>{"message" => "%{name}}}  로그내용을 매핑하는 과정
+- mutate{ convert => ["mid", "integeer"]} 매핑한 값들의 자료형을 선언
+- mutate remove에서 timestamp는 지우면안됨 에러남
+- output{if "filebeat-tag" in [tags]{elasticsearch{hosts=>[""]index=>"index-name"}} 
+
+### 해야될 것
+- doc-type 붙이기 
+    - logstash add_field 찾아보기
+    - tag로 각 데이터 분류해서 파싱하기
 
 ## 3. elastcisearch
 - 엘라스틱서치헤드 10.27.13.31/9200
 
 ## 4. kibana
 - discover탭에서 index를 찾아서 클릭하면 확인이 가능하다.
+- kibana 사용시 주의할 점
+    - 화면 오른쪽위에 특정 시간을 설정하는 곳에서 today로 해놔야 실시간 반영정보를 확인할 수 있다.......기본은 today로 ...
 
 
 
