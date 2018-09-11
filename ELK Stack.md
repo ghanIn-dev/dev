@@ -23,6 +23,7 @@
 - 설정파일은 input, filter, output 구조로 구성되어있다.
 - 설정파일 내용 중 index를 설정할 수 있는데 index는 반드시 소문자만 사용한다. index는 로그분류기준이된다.
 - systemctl start logstash : 상시실행가능
+- /var/log/logstash
 
 ### logstash 문법
 - disect{mapping =>{"message" => "%{name}}}  로그내용을 매핑하는 과정
